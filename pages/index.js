@@ -1,11 +1,11 @@
-import Layout from "components/layout"
+
 import Hero from "components/hero"
 
-
+const params = {title :'CUBE', subtitle:'アウトプットしていくサイト'}
 const Home =() => (
   <>
   
-    <Hero />
+    <Hero {...params}/>
   
   </>
 )
