@@ -4,9 +4,9 @@ import Hero from "components/hero"
 
 const Home =() => (
   <>
-  <Layout>
+  
     <Hero />
-  </Layout>
+  
   </>
 )
 
