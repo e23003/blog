@@ -1,12 +1,9 @@
+import Hero from 'components/hero'
 
-import Hero from "components/hero"
-
-const params = {title :'Blog', subtitle:'Recent Posts'}
-const Blog =() => (
+const params = { title: 'Blog', subtitle: 'Recent Posts' }
+const Blog = () => (
   <>
-  
-    <Hero {...params}/>
-  
+    <Hero {...params} />
   </>
 )
 

@@ -1,12 +1,13 @@
+import Hero from 'components/hero'
 
-import Hero from "components/hero"
-
-const params = {title :'CUBE', subtitle:'アウトプットしていくサイト'}
-const Home =() => (
+const params = {
+  title: 'CUBE',
+  subtitle: 'アウトプットしていくサイト',
+  imageOn: true
+}
+const Home = () => (
   <>
-  
-    <Hero {...params}/>
-  
+    <Hero {...params} />
   </>
 )
 
