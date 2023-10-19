@@ -1,12 +1,14 @@
 import { client } from 'lib/api'
-//import { getPostBySlug } from 'lib/api'
 import Container from 'components/container'
+import PostHeader from 'components/post-header'
 
-//{ title, publish, content, eyecatch, categories }
-const Schedule = ({ title }) => {
+//
+const Schedule = ({ title, publish, content, eyecatch, categories }) => {
   return (
     <Container>
-      <h1>{title}</h1>
+      <article>
+        <PostHeader title={title} subtitle='Blog Article' publish={publish} />
+      </article>
     </Container>
   )
 }
@@ -16,19 +18,17 @@ const getStaticProps = async () => {
     queries: { filters: 'slug[equals]schedule' }
   })
   const res = await resPromise
-  const contents = res.contents.at(0)
+  const post = res.contents.at(0)
   //console.log(contents)
   return {
-    props: { title: contents.title }
+    props: {
+      title: post.title,
+      publish: post.publishDate,
+      content: post.content,
+      eyecatch: post.eyecatch,
+      categories: post.categories
+    }
   }
-  // return {
-  //   props: {
-  //     title: post.title,
-  //     publish: post.publishDate,
-  //     content: post.content,
-  //     eyecatch: post.eyecatch,
-  //     categories: post.categories
-  //   }
 }
 
 // const getStaticProps = () => {
