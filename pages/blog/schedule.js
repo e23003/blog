@@ -1,6 +1,7 @@
 import { client } from 'lib/api'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
+import Image from 'next/legacy/image'
 
 //
 const Schedule = ({ title, publish, content, eyecatch, categories }) => {
@@ -8,6 +9,17 @@ const Schedule = ({ title, publish, content, eyecatch, categories }) => {
     <Container>
       <article>
         <PostHeader title={title} subtitle='Blog Article' publish={publish} />
+        <figure>
+          <Image
+            src={eyecatch.url}
+            alt=''
+            layout='responsive'
+            width={eyecatch.width}
+            height={eyecatch.height}
+            sizes='(min-width:1152px) 1152px,100vw'
+            property
+          />
+        </figure>
       </article>
     </Container>
   )
