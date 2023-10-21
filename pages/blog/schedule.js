@@ -1,9 +1,16 @@
 import { client } from 'lib/api'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
+import PostBody from 'components/post-body'
+import {
+  TwoColumn,
+  TwoColumnMain,
+  TwoColumnSidebar
+} from 'components/two-column'
+import ConvertBody from 'components/convert-body'
 import Image from 'next/legacy/image'
+import Head from 'next/head'
 
-//
 const Schedule = ({ title, publish, content, eyecatch, categories }) => {
   return (
     <Container>
@@ -20,10 +27,20 @@ const Schedule = ({ title, publish, content, eyecatch, categories }) => {
             property
           />
         </figure>
+        <TwoColumn>
+          <TwoColumnMain>
+            <PostBody>
+              <ConvertBody contentHTML={content} />
+            </PostBody>
+          </TwoColumnMain>
+          <TwoColumnSidebar></TwoColumnSidebar>
+        </TwoColumn>
       </article>
     </Container>
   )
 }
+
+//<ConvertBody contentHTML={content} />
 const getStaticProps = async () => {
   const resPromise = client.get({
     endpoint: 'blogs',
