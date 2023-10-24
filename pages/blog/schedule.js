@@ -1,4 +1,6 @@
 import { client } from 'lib/api'
+import { extractText } from 'lib/extract-text'
+import Meta from 'components/meta'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
 import PostBody from 'components/post-body'
@@ -12,9 +14,23 @@ import PostCategories from 'components/post-categories'
 import Image from 'next/legacy/image'
 import Head from 'next/head'
 
-const Schedule = ({ title, publish, content, eyecatch, categories }) => {
+const Schedule = ({
+  title,
+  publish,
+  content,
+  eyecatch,
+  categories,
+  description
+}) => {
   return (
     <Container>
+      <Meta
+        pageTitle={title}
+        pageDesc={description}
+        pageImg={eyecatch.url}
+        pageImgW={eyecatch.width}
+        pageImgH={eyecatch.height}
+      />
       <article>
         <PostHeader title={title} subtitle='Blog Article' publish={publish} />
         <figure>
@@ -51,14 +67,16 @@ const getStaticProps = async () => {
   })
   const res = await resPromise
   const post = res.contents.at(0)
-  //console.log(contents)
+
+  const description = extractText(post.content)
   return {
     props: {
       title: post.title,
       publish: post.publishDate,
       content: post.content,
       eyecatch: post.eyecatch,
-      categories: post.categories
+      categories: post.categories,
+      description: description
     }
   }
 }
